@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounting Journal Generator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <!-- Add download library scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.15/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <h1>Accounting Journal Generator</h1>
+
+    <!-- Initial Balances -->
+    <h2>Initial Balances</h2>
+    <div id="initialBalancesForm">
+        <div>
+            <h3>Debit Balances</h3>
+            <div id="debitBalances"></div>
+            <button onclick="addBalanceEntry('debitBalances')">Add Debit Balance</button>
+        </div>
+        <div>
+            <h3>Credit Balances</h3>
+            <div id="creditBalances"></div>
+            <button onclick="addBalanceEntry('creditBalances')">Add Credit Balance</button>
+        </div>
+    </div>
+
+    <!-- Transactions -->
+    <h2>Transactions</h2>
+    <div>
+        <input type="text" id="transactionTextInput" placeholder="Enter transaction (e.g., Purchased goods for ₹5000 in cash)">
+        <button id="parseButton" onclick="addTransactionEntryFromText()">Parse Transaction</button><br><br>
+    </div>
+    <button onclick="addTransactionEntry()">Add Transaction</button><br><br>
+    <div id="transactionsForm"></div>
+
+    <!-- Generate Journal and Ledgers -->
+    <button onclick="generateJournalAndLedgers()">Generate Journal and Ledgers</button>
+
+    <!-- Journal -->
+    <h2>Journal</h2>
+    <table id="journalTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Account Title</th>
+                <th>Debit (₹)</th>
+                <th>Credit (₹)</th>
+            </tr>
+        </thead>
+        <tbody id="journalBody"></tbody>
+    </table>
+
+    <!-- Ledgers -->
+    <h2>Ledgers</h2>
+    <div id="ledgers"></div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
